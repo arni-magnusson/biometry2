@@ -1,4 +1,4 @@
 # biometry2
 Package for Biometry II
 
-Package to learn :)
+Package to learn (no smiley)
