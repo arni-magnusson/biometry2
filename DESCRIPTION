@@ -1,0 +1,9 @@
+Package: biometry2
+Type: Package
+Title: Functions from Biometry II
+Version: 1.0
+Date: 2019-02-13
+Author: Arni Magnusson
+Maintainer: Arni Magnusson <arnima@hi.is>
+Description: Collection of functions from Biometry II, University of Iceland.
+License: GPL (>= 2)
