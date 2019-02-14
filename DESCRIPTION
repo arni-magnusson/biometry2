@@ -7,4 +7,5 @@ Author: Arni Magnusson
 Maintainer: Arni Magnusson <arnima@hi.is>
 Description: Collection of functions from Biometry II, University of Iceland.
 License: GPL (>= 2)
+Encoding: UTF-8
 RoxygenNote: 6.1.1
