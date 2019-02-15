@@ -2,3 +2,5 @@
 
 export(half)
 export(twice)
+importFrom(graphics,matplot)
+importFrom(graphics,points)

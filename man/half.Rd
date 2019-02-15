@@ -19,7 +19,6 @@ This function divides x by 2.
 half(5)
  
 half(pi)
-
  
 }
 \seealso{
