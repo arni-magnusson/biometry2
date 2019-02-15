@@ -3,7 +3,7 @@
 #' This function adds two numbers together.
 #'
 #' @param x a number.
-#' @param y a number
+#' @param y a number.
 #'
 #' @return
 #' A number, the value of "x" pluss the value of "y"
@@ -12,7 +12,7 @@
 #' Elisabeth Knudsen, Msc. student at the University of Iceland
 #'
 #' @seealso
-#' \link{Arithmetic}
+#' \link{Arithmetic}, \code{\link{sum}}.
 #'
 #' @examples
 #' add(134, 288)
