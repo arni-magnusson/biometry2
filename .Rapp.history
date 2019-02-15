@@ -1,0 +1,1002 @@
+data <- merge_phyloseq(bioms[[1]], bioms[[2]], bioms[[3]], bioms[[4]], bioms[[5]], bioms[[6]], bioms[[7]], bioms[[8]], bioms[[9]])
+file = "/Users/Clara/Projects/mime/res/kraken2/20170521_SI8_313_0m.biom.json"#
+biom1 <- import_biom(file, #
+ treefilename=NULL, refseqfilename=NULL, refseqFunction=readDNAStringSet, refseqArgs=NULL,#
+ parseFunction=parse_taxonomy_greengenes, version=1.0)#
+colnames(otu_table(biom1)) <- "20170521_SI8_313_0m"#
+#
+file = "/Users/Clara/Projects/mime/res/kraken2/20170521_SI8_313_0m_customdb.biom.json"#
+biom2 <- import_biom(file, #
+ treefilename=NULL, refseqfilename=NULL, refseqFunction=readDNAStringSet, refseqArgs=NULL,#
+ parseFunction=parse_taxonomy_greengenes, version=1.0)#
+colnames(otu_table(biom2)) <- "20170521_SI8_313_0m_customdb"
+data <- merge_phyloseq(biom1, biom2)
+tdata <- transform_sample_counts(sdata, function(x) x / sum(x))
+tdata <- transform_sample_counts(data, function(x) x / sum(x))
+p = plot_bar(tdata, fill = "Phylum")
+TopNOTUs <- names(sort(taxa_sums(tdata), TRUE)[1:10])#
+ent10   <- prune_species(TopNOTUs, tdata)#
+plot_bar(ent10, #
+	fill="Phylum")
+TopNOTUs <- names(sort(taxa_sums(tdata), TRUE)[1:10])#
+ent10   <- prune_species(TopNOTUs, tdata)#
+plot_bar(ent10, #
+	fill="Order")
+TopNOTUs <- names(sort(taxa_sums(tdata), TRUE)[1:10])#
+ent10   <- prune_species(TopNOTUs, tdata)#
+plot_bar(ent10, #
+	fill="Genus")
+p
+plot_bar(tdata, fill = "Phylum")
+plot_bar(tdata, fill = "Order")
+plot_bar(tdata, fill = "Kingdom")
+plot_bar(tdata, fill = "Class")
+plot_bar(tdata, fill = "Phylum")
+pdf(file = paste(img.path, today, "_barplot_phylum.pdf", sep="", collapse=NULL),  width=16, height=6)#
+plot_bar(tdata, fill = "Phylum")#
+dev.off()
+pdf(file = paste(img.path, today, "_barplot_phylum.pdf", sep="", collapse=NULL),  width=16, height=16)#
+plot_bar(tdata, fill = "Phylum")#
+dev.off()
+kraken2-build --download-library bacteria --db $DBNAME
+paste(img.path, today, "_barplot_phylum.pdf", sep="", collapse=NULL)
+pdf(file = paste(img.path, today, "_barplot_phylum.pdf", sep="", collapse=NULL),  width=16, height=16)#
+plot_bar(data, fill = "Phylum")#
+dev.off()
+pdf(file = paste(img.path, today, "_barplot_phylum.pdf", sep="", collapse=NULL),  width=16, height=16)#
+plot_bar(data, fill = "Phylum") + facet_wrap(~Kingdom)#
+dev.off()
+pdf(file = paste(img.path, today, "_barplot_phylum.pdf", sep="", collapse=NULL),  width=16, height=16)#
+plot_bar(tdata, fill = "Phylum") + facet_wrap(~Kingdom) + scale_y_log10()#
+dev.off()
+pdf(file = paste(img.path, today, "_barplot_phylum.pdf", sep="", collapse=NULL),  width=16, height=16)#
+plot_bar(tdata, fill = "Phylum") + scale_y_log10() + facet_wrap(~Kingdom) ##
+dev.off()
+pdf(file = paste(img.path, today, "_barplot_phylum.pdf", sep="", collapse=NULL),  width=16, height=16)#
+plot_bar(tdata, fill = "Phylum") + facet_wrap(~Kingdom) ##
+dev.off()
+euk <- subset_taxa(data, Kingdom=="Eukaryotes")#
+p = plot_bar(euk, x="depth.cat",fill = "Genus")#
+p + facet_wrap(~stn.id, ncol=4)
+euk <- subset_taxa(data, Kingdom=="Eukaryots")#
+p = plot_bar(euk, x="depth.cat",fill = "Genus")#
+p + facet_wrap(~stn.id, ncol=4)
+euk <- subset_taxa(data, Kingdom=="Eukaryota")#
+p = plot_bar(euk, x="depth.cat",fill = "Genus")#
+p + facet_wrap(~stn.id, ncol=4)
+euk <- subset_taxa(data, Kingdom=="Eukaryota")#
+p = plot_bar(euk, x="depth.cat",fill = "Genus")#
+p + facet_wrap(~Genus, ncol=4)
+euk <- subset_taxa(data, Kingdom=="Eukaryota")#
+p = plot_bar(euk,fill = "Genus")#
+p + facet_wrap(~Genus, ncol=4)
+p = plot_bar(euk,fill = "Phylum")
+p + scale_y_log10()
+pdf(file = paste(img.path, today, #
+	"_euk_barplot_phylum.pdf", sep="", collapse=NULL),  #
+	width=16, height=16)#
+p + scale_y_log10() + #
+	ggtitle("Barplot of the eukaryote phyla obtained with Kraken2 using the standard database vs. custom database",#
+		subtitle="Based on metagenomic data from surface seawater sample")#
+dev.off()
+paste(img.path, today, #
++ 	"_euk_barplot_phylum.pdf", sep="", collapse=NULL)
+pdf(file = paste(img.path, today, "_euk_barplot_phylum.pdf", sep="", collapse=NULL),  #
+	width=16, height=16)#
+p + scale_y_log10() + #
+	ggtitle("Barplot of the eukaryote phyla obtained with Kraken2 using the standard database vs. custom database",#
+		subtitle="Based on metagenomic data from surface seawater sample")#
+dev.off()
+paste(img.path, today, "_euk_barplot_phylum.pdf", sep="", collapse=NULL)
+pdf(file = paste(img.path, today, "_euk_barplot_phylum.pdf", sep="", collapse=NULL),  #
+	width=9, height=10)#
+p + scale_y_log10() + #
+	ggtitle("Barplot of the eukaryote phyla obtained with Kraken2 using the standard database vs. custom database",#
+		subtitle="Based on metagenomic data from surface seawater sample")#
+dev.off()
+if (!requireNamespace("BiocManager", quietly = TRUE))#
+    install.packages("BiocManager")#
+BiocManager::install("metagenomeSeq", version = "3.8")
+install.packages("timber")
+updateR()
+install.packages("installr")#
+library(installr)#
+updateR()
+pkgutil --check-signature R-3.5.2.pkg
+install.packages("timber")
+setRepositories()
+install.packages("lubridate", dependencies=TRUE, repos='http://cran.rstudio.com/')
+install.packages("timber", dependencies=TRUE, repos='http://cran.rstudio.com/')
+packages <- function(pkg){#
+    new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]#
+    if (length(new.pkg))#
+        install.packages(new.pkg, dependencies = TRUE, repos='https://cran.rstudio.com/')#
+    sapply(pkg, require, character.only = TRUE)#
+}#
+#
+packages(c("foo", "bar", "baz"))
+packages <- function(pkg){#
+    new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]#
+    if (length(new.pkg))#
+        install.packages(new.pkg, dependencies = TRUE, repos='https://cran.rstudio.com/')#
+    sapply(pkg, require, character.only = TRUE)#
+}#
+#
+packages(c("timber"))
+setwd("/Users/Clara/Projects/packages")
+package.skeleton("biometry")
+library(devtools)
+setwd("/Users/Clara/Projects/packages/biometry”)
+)
+)
+"
+setwd("/Users/Clara/Projects/packages/biometry")
+build()
+load("/Users/Clara/Projects/packages/biometry/data/Coral.rda")
+? skeletons
+Sunflower
+setwd("/Users/Clara/Projects/packages")
+package.skeleton("biometry")
+twice <- function(x)#
+{#
+  2*x#
+}
+package.skeleton("biometry")
+setwd("/Users/Clara/Projects/packages/biometry")
+build
+build()
+setwd("/Users/Clara/Projects/packages")
+build()
+setwd("/Users/Clara/Projects/packages/biometry")
+build()
+dir()
+build()
+install.packages("Roxygen2")
+install.packages("roxygen2")
+library(roxygen)
+library(roxygen2)
+cwd()
+getwd()
+setwd("/Users/Clara/Projects/packages/biometry2")
+roxygenise()
+document()
+setwd("/Users/Clara/Projects/packages/biometry2")
+setwd("/Users/Clara/Projects/packages")
+package.skeleton("biometry")
+? roxygenise()
+roxygenize()
+roxygenize("biometry2")
+roxygenize("biometry2")
+cars
+mod <- lm(dist ~ speed, data=cars)
+mod
+plot(mod)
+plot(mod)[1]
+plot(mod)
+par(mrow=2)
+?par()
+par(mfrow)
+par(mfrow=2)
+par(mfrow=c(2))
+par(mfrow=c(1,2))
+plot(mod)
+par(mfrow=c(2,2))
+plot(mod)
+layout(matrix(c(1,1,2,3), 2, 3, byrow = TRUE), #
+   widths=c(3,1), heights=c(1,2))
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE), #
+   widths=c(3,1), heights=c(1,2))
+plot(mod)
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE), #
+   widths=c(3,1), heights=c(1,2))attach(mtcars)#
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))#
+hist(wt)#
+hist(mpg)#
+hist(disp)
+attach(mtcars)#
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))#
+hist(wt)#
+hist(mpg)#
+hist(disp)
+attach(mtcars)#
+layout(matrix(c(1,1,2,3), 2, 3, byrow = TRUE))#
+hist(wt)#
+hist(mpg)#
+hist(disp)
+attach(mtcars)#
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))#
+hist(wt)#
+hist(mpg)#
+hist(disp)
+hist(cyl)
+attach(mtcars)#
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))#
+hist(wt)#
+hist(mpg)#
+hist(disp)
+attach(mtcars)#
+layout(matrix(c(1,1,2,5), 2, 2, byrow = TRUE))#
+hist(wt)#
+hist(mpg)#
+hist(disp)
+attach(mtcars)#
+layout(matrix(c(1,1,2,3), 2, 2, byrow = TRUE))#
+hist(wt)#
+hist(mpg)#
+hist(disp)
+plor(speed~dist)
+plot(speed~dist)
+plot(speed~dist, data=cars)
+layout(matrix(c(1, 1,#
+                2, 3,#
+                3, 4,), nrow=3, byrow=TRUE))#
+plot(speed~dist, data=cars)#
+plot(m)
+layout(matrix(c(1, 1,#
+                2, 3,#
+                3, 4,), nrow=3, byrow=TRUE))#
+plot(speed~dist, data=cars)#
+plot(m)
+plot(mod, which=c(2,1))
+plot(mod, which=c(1))
+? plot
+plot(x, which = 1)
+plot(x, which = c(1))
+plot(mod, which = 1)
+layout(matrix(c(1, 1,#
+                2, 3,#
+                3, 4,), nrow=3, byrow=TRUE))#
+plot(speed~dist, data=cars)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1,#
+                2, 3,#
+                3, 4,), nrow=3, byrow=TRUE))#
+plot(speed~dist, data=cars)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1,#
+                2, 3,#
+                3, 4), nrow=3, byrow=TRUE))#
+plot(speed~dist, data=cars)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1,#
+                2, 3,#
+                3, 4), nrow=3, byrow=TRUE))
+plot(speed~dist, data=cars)
+plot(mod, which = 1)
+plot(mod, which = 2)
+layout(matrix(c(1, 1,#
+                2, 3,#
+                4, 5), nrow=3, byrow=TRUE))#
+plot(speed~dist, data=cars)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1,#
+                2, 3,#
+                4, 5), nrow=3, byrow=TRUE))#
+par(pty="s")#
+plot(speed~dist, data=cars)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), nrow=2, byrow=TRUE))#
+par(pty="s")#
+plot(speed~dist, data=cars)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+par(pty="s")#
+plot(speed~dist, data=cars)#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), nrow=2, byrow=TRUE))#
+par(pty="s")#
+plot(dist~mod, data=cars)#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), nrow=2, byrow=TRUE))#
+par(pty="s")#
+plot(dist~speed, data=cars)#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+mod <- lm(dist~speed)#
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), nrow=2, byrow=TRUE))#
+par(pty="s")#
+plot(dist~speed, data=cars)#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+mod
+names(mod)
+mod$model
+mod$model$dist
+mod$model[,2]
+mod$model[,1]
+mod <- lm(dist~speed)#
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), nrow=2, byrow=TRUE))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout
+? layout
+mod <- lm(dist~speed)#
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), nrow=2, byrow=TRUE), widths = lcm(5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+mod <- lm(dist~speed)#
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), nrow=2, byrow=TRUE), widths = lcm(5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+mod <- lm(dist~speed)#
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), nrow=2, byrow=TRUE), widths = lcm(10))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+? layout
+layout(mat=matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = rep.int(1, ncol(mat))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = rep.int(1, ncol(mat))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = rep.int(1, ncol(2))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = 10)#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = c(5,2.5,2.5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 2, 3,#
+                1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = c(2,2.5,2.5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 2, 3,#
+                1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = c(2,2.5,2.5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 2, 3,#
+                1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = c(2,2.5,2.5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 2, 3,#
+                1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = c(5,2.5,2.5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = c(2.5,2.5,2.5,2.5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = c(2.5,2.5,2.5,2.5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = c(2.5,2.5,2.5,2.5),#
+	x=10)#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+	nrow=2, #
+	byrow=TRUE),#
+	widths = c(2.5,2.5,2.5,2.5))#
+par(pty="s")#
+plot(mod$model[,1]~mod$model[,2])#
+abline(mod)#
+plot(mod, which = 1)#
+plot(mod, which = 2)#
+plot(mod, which = 3)#
+plot(mod, which = 4)
+par(fig=c(0,0.8,0,0.8), new=TRUE)#
+plot(mtcars$wt, mtcars$mpg, xlab="Car Weight",#
+  ylab="Miles Per Gallon")#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mtcars$wt, horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mtcars$mpg, axes=FALSE)#
+mtext("Enhanced Scatterplot", side=3, outer=TRUE, line=-3)
+par(fig=c(0,0.8,0,0.8), new=TRUE)#
+plot(mtcars$wt, mtcars$mpg, xlab="Car Weight",#
+  ylab="Miles Per Gallon")#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mtcars$wt, horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mtcars$mpg, axes=FALSE)#
+mtext("Enhanced Scatterplot", side=3, outer=TRUE, line=-3)
+par(fig=c(0,0.8,0,0.8), new=TRUE)#
+plot(mod$model[,1]~mod$model[,2])
+par(fig=c(0,0.8,0,0.8), new=TRUE)#
+plot(mod$model[,1]~mod$model[,2])
+par(fig=c(0,0.8,0,0.8), new=TRUE)#
+plot(mod$model[,1]~mod$model[,2])#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+names(mod)
+names(mod)$xlevels
+mod$xlevels
+mod$terms
+names(model.frame(mod))
+par(fig=c(0,0.8,0,0.8), new=TRUE)#
+plot(mod$model[,1]~mod$model[,2], x=names(model.frame(mod))[1], ynames(model.frame(mod))[2])#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+names(model.frame(mod))[1]
+names(model.frame(mod))[1]
+names(model.frame(mod))[2]
+par(fig=c(0,0.8,0,0.8), new=TRUE)#
+plot(mod$model[,1]~mod$model[,2], x=names(model.frame(mod))[1], y=names(model.frame(mod))[2])#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+par(fig=c(0,0.8,0,0.8), new=TRUE)#
+plot(mod$model[,1]~mod$model[,2], #
+		xlab = names(model.frame(mod))[1], #
+		ylab = names(model.frame(mod))[2])#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+par(fig=c(0,0.8,0,0.8), new=TRUE)#
+plot(mod$model[,1]~mod$model[,2], #
+		xlab = names(model.frame(mod))[1], #
+		ylab = names(model.frame(mod))[2])#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+par(fig = c(0,0.8,0,0.8), #
+	new = TRUE,#
+	pty="s")#
+plot(mod$model[,1]~mod$model[,2], #
+		xlab = names(model.frame(mod))[1], #
+		ylab = names(model.frame(mod))[2])#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+par(fig = c(0,0.8,0,0.8), #
+	new = TRUE,#
+	pty="s")#
+plot(mod$model[,1]~mod$model[,2], #
+		xlab = names(model.frame(mod))[1], #
+		ylab = names(model.frame(mod))[2])#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+par(fig = c(0,0.8,0,0.8), #
+	new = TRUE)#
+plot(mod$model[,1]~mod$model[,2], #
+		xlab = names(model.frame(mod))[1], #
+		ylab = names(model.frame(mod))[2])#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+new = TRUE)#
+plot(mod$model[,1]~mod$model[,2], #
+		xlab = names(model.frame(mod))[1], #
+		ylab = names(model.frame(mod))[2])#
+line(mod)#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+par(fig = c(0,0.8,0,0.8), #
+	new = TRUE)#
+plot(mod$model[,1]~mod$model[,2], #
+		xlab = names(model.frame(mod))[1], #
+		ylab = names(model.frame(mod))[2])#
+abline(mod)#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+par(fig = c(0,0.8,0,0.8), #
+	new = TRUE)#
+plot(mod$model[,1]~mod$model[,2], #
+		xlab = names(model.frame(mod))[1], #
+		ylab = names(model.frame(mod))[2])#
+abline(mod)#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+par(fig = c(0,0.8,0,0.8), #
+	new = TRUE)#
+plot(mod$model[,1]~mod$model[,2], #
+		xlab = names(model.frame(mod))[1], #
+		ylab = names(model.frame(mod))[2])#
+abline(mod)#
+par(fig=c(0,0.8,0.55,1), new=TRUE)#
+boxplot(mod$model[,1], horizontal=TRUE, axes=FALSE)#
+par(fig=c(0.65,1,0,0.8),new=TRUE)#
+boxplot(mod$model[,2], axes=FALSE)
+#' Add together two numbers#
+#'#
+#' @param m linear model#
+#' @return Scatterplot and lm diagnostic plots#
+#' @examples#
+#' 	#
+#' model <- lm(dist~speed, data=cars)#
+#' plot.lm(model)#
+#
+plot.lm <- function(m) {#
+#
+	layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+		nrow=2, #
+		byrow=TRUE),#
+		widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(mod$model[,1]~mod$model[,2])#
+	abline(mod)#
+	plot(mod, which = 1)#
+	plot(mod, which = 2)#
+	plot(mod, which = 3)#
+	plot(mod, which = 4)#
+}
+plot.lm <- function(m) {#
+#
+	layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+		nrow=2, #
+		byrow=TRUE),#
+		widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(mod$model[,1]~mod$model[,2])#
+	abline(mod)#
+	plot(mod, which = 1)#
+	plot(mod, which = 2)#
+	plot(mod, which = 3)#
+	plot(mod, which = 4)#
+}
+model <- lm(dist~speed, data=cars)
+plot.lm(model)
+plot.lm <- function(m) {#
+#
+	layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+		nrow=2, #
+		byrow=TRUE),#
+		widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(m$model[,1]~m$model[,2])#
+	abline(m)#
+	plot(m, which = 1)#
+	plot(m, which = 2)#
+	plot(m, which = 3)#
+	plot(m, which = 4)#
+}
+plot.lm(model)
+plot.lm(model)
+plot(m, which = 1)
+plot(model, which = 1)
+plot.lm <- function(m) {#
+	layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+		nrow=2, #
+		byrow=TRUE),#
+		widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(m$model[,1]~m$model[,2]#
+		xlab = names(model.frame(mod))[1], #
+ 		ylab = names(model.frame(mod))[2])#
+	abline(m)#
+	plot(m, which = 1)#
+	plot(m, which = 2)#
+	plot(m, which = 3)#
+	plot(m, which = 4)#
+}
+plot.lm <- function(m) {#
+	layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+		nrow=2, #
+		byrow=TRUE),#
+		widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(mod))[1], #
+ 		ylab = names(model.frame(mod))[2])#
+	abline(m)#
+	plot(m, which = 1)#
+	plot(m, which = 2)#
+	plot(m, which = 3)#
+	plot(m, which = 4)#
+}
+model <- lm(dist~speed, data=cars)
+plot.lm(model)
+plot.lm <- function(m) {#
+	layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+		nrow=2, #
+		byrow=TRUE),#
+		widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m)#
+	plot(m, which = 1)#
+	plot(m, which = 2)#
+	plot(m, which = 3)#
+	plot(m, which = 4)#
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+	m#
+	layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+		nrow=2, #
+		byrow=TRUE),#
+		widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m)#
+	plot(m, which = 1)#
+	plot(m, which = 2)#
+	plot(m, which = 3)#
+	plot(m, which = 4)#
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+	layout(matrix(c(1, 1, 2, 3,#
+                1, 1, 4, 5), #
+		nrow=2, #
+		byrow=TRUE),#
+		widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m)#
+	# plot(m, which = 1)#
+	# plot(m, which = 2)#
+	# plot(m, which = 3)#
+	# plot(m, which = 4)#
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+	# layout(matrix(c(1, 1, 2, 3,#
+ #                1, 1, 4, 5), #
+	# 	nrow=2, #
+	# 	byrow=TRUE),#
+	# 	widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m)#
+	# plot(m, which = 1)#
+	# plot(m, which = 2)#
+	# plot(m, which = 3)#
+	# plot(m, which = 4)#
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+	# layout(matrix(c(1, 1, 2, 3,#
+ #                1, 1, 4, 5), #
+	# 	nrow=2, #
+	# 	byrow=TRUE),#
+	# 	widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m)#
+	# plot(m, which = 1)#
+	# plot(m, which = 2)#
+	# plot(m, which = 3)#
+	# plot(m, which = 4)#
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+	# layout(matrix(c(1, 1, 2, 3,#
+ #                1, 1, 4, 5), #
+	# 	nrow=2, #
+	# 	byrow=TRUE),#
+	# 	widths = c(2.5,2.5,2.5,2.5))#
+	par(pty="s")#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m)#
+#
+	lm_coef <- round(coef(m), 3) # extract coefficients #
+mtext(bquote(y == .(lm_coef[2])*x + .(lm_coef[1])), #
+adj=1, padj=0) #
+	# plot(m, which = 1)#
+	# plot(m, which = 2)#
+	# plot(m, which = 3)#
+	# plot(m, which = 4)#
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+#
+	par(pty="s") # ratio = 1#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m) # show regression line#
+#
+	# extract coefficients #
+	coef <- round(coef(m), 3) #
+	mtext(bquote(y == .(coef[2]) * x + .(coef[1])), #
+	adj=1, padj=0) #
+}
+plot.lm(model)
+names(mod)
+names(model)
+names(model)$coefficients
+model$coefficients
+model$qr
+model$coefficients
+names(model)$coefficients
+names(model)
+model$call
+model$terms
+model$model
+names(model)
+model$residuals
+model
+model$call
+plot.lm <- function(m) {#
+#
+	par(pty="s") # ratio = 1#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m) # show regression line#
+#
+	# extract coefficients #
+	coef <- round(coef(m), 3) #
+	mtext(bquote(y == .(coef[2]) * x + .(coef[1])), #
+	adj=1, padj=0) #
+	mtext(bquote(model$call, #
+	adj=1, padj=1) #
+}
+plot.lm <- function(m) {#
+#
+	par(pty="s") # ratio = 1#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m) # show regression line#
+#
+	# extract coefficients #
+	coef <- round(coef(m), 3) #
+	mtext(bquote(y == .(coef[2]) * x + .(coef[1])), #
+	adj=1, padj=0) #
+	mtext(bquote(model$call), #
+	adj=1, padj=0) #
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+#
+	par(pty="s") # ratio = 1#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m) # show regression line#
+#
+	# extract coefficients #
+	coef <- round(coef(m), 3) #
+	mtext(bquote(y == .(coef[2]) * x + .(coef[1])), #
+	adj=1, padj=0) #
+	mtext(bquote(model$call), #
+	adj=1, padj=1) #
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+#
+	par(pty="s") # ratio = 1#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m) # show regression line#
+#
+	# extract coefficients #
+	coef <- round(coef(m), 3) #
+	mtext(bquote(y == .(coef[2]) * x + .(coef[1])), #
+	adj=1, padj=0) #
+	mtext(model$call, #
+	adj=1, padj=1) #
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+#
+	par(pty="s") # ratio = 1#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m) # show regression line#
+#
+	# extract coefficients #
+	coef <- round(coef(m), 3) #
+	mtext(bquote(y == .(coef[2]) * x + .(coef[1])), #
+	adj=1, padj=0) #
+	mtext(bquote(.(model$call)), #
+	adj=1, padj=1) #
+}
+plot.lm(model)
+plot.lm <- function(m) {#
+	par(pty="s") # ratio = 1#
+	plot(m$model[,1]~m$model[,2],#
+		xlab = names(model.frame(m))[1], #
+ 		ylab = names(model.frame(m))[2])#
+	abline(m) # show regression line#
+#
+	# extract coefficients #
+	coef <- round(coef(m), 3) #
+	mtext(bquote(y == .(coef[2]) * x + .(coef[1])), #
+	adj=1, padj=0) #
+}
+build()
+setwd(/Users/Clara/Projects/packages/biometry2)
+sedwd("/Users/Clara/Projects/packages/biometry2")
+setwd("/Users/Clara/Projects/packages/biometry2")
+build()
+library("devtools")#
+library("roxygen2")
+create("plot.lm")
+roxygenise()
+roxygenise()

@@ -1,13 +1,20 @@
 #' Plot scatterplot with linear regression line
 #'
+#' @author Clara Jégousse
+#'
+#' @name biometry2
+#'
+#'
 #' @param m linear model
 #' @return Scatterplot and lm regression line as well as the equation
+#' 
 #' @examples
-#' 	
 #' model <- lm(dist~speed, data=cars)
 #' plot.lm(model)
+#' 
+#' @importFrom graphics matplot points
 
-plot.lm <- function(m) {
+lm_plot <- function(m) {
 	par(pty="s") # ratio = 1
 	plot(m$model[,1]~m$model[,2],
 		xlab = names(model.frame(m))[1], 
