@@ -8,7 +8,7 @@
 #' R0,Tc,r,birth-ex, current population growth, average generation time, intrinsic population growth and life expectancy at birth (if age 0 is at the top of a given table and life stages are seperated by a constant interval, e.g. 1 year) all expressed in the given time unit..
 #'
 #' @author
-#' Ölvir Styrmisson
+#' Ã–lvir Styrmisson
 #'
 #' @seealso
 #' \href{https://cran.r-project.org/web/packages/MortalityTables/index.html}{MortailityTables}
