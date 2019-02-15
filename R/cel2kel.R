@@ -16,6 +16,8 @@
 #' @examples
 #' cel2kel(70)
 #' cel2kel(-4)
+#'
+#' @export
 
 cel2kel <- function(x) {
     kel <- (x + 273.15)
