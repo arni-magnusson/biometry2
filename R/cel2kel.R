@@ -8,7 +8,7 @@
 #' Kelvin scale value, 273.15 added to Celsius degrees.
 #' 
 #' @author
-#' Vigdís Freyja Helmutsdóttir, MSc. student at the University of Iceland.
+#' VigdÃ­s Freyja HelmutsdÃ³ttir, MSc. student at the University of Iceland.
 #' 
 #' @seealso
 #' \link{Arithmetic}
