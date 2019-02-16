@@ -1,12 +1,11 @@
-
 #' Make a histogram of x
 #'
 #' This function generates a histogram of x.
 #'
-#' @param x column name
+#' @param x a numeric vector.
 #'
 #' @return
-#' A histogram of x. 
+#' Plots a histogram of x. 
 #'
 #' @author
 #' Einar Petur Jonsson
@@ -15,17 +14,20 @@
 #' \link{hist}
 #'
 #' @examples
-#' histeria(mpg)
+#' histeria(mtcars$mpg)
 #'
-#' histeria(qsec)
+#' histeria(mtcars$qsec)
+#'
+#' @importFrom graphics hist
 #'
 #' @export
 
 
 
 histeria<-function(x)
-  { out<-hist(x) 
-    }
+{
+  out<-hist(x) 
+}
     
 
 

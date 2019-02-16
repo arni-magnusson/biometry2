@@ -7,18 +7,18 @@
 histeria(x)
 }
 \arguments{
-\item{x}{column name}
+\item{x}{a numeric vector.}
 }
 \value{
-A histogram of x.
+Plots a histogram of x.
 }
 \description{
 This function generates a histogram of x.
 }
 \examples{
-histeria(mpg)
+histeria(mtcars$mpg)
 
-histeria(qsec)
+histeria(mtcars$qsec)
 
 }
 \seealso{
