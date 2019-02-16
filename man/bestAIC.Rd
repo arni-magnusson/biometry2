@@ -2,21 +2,25 @@
 % Please edit documentation in R/bestAIC.R
 \name{bestAIC}
 \alias{bestAIC}
-\title{Multiply by Two}
+\title{Compare AIC}
 \usage{
 bestAIC(m1, m2)
 }
 \arguments{
-\item{lm1}{and lm2 are models.}
+\item{m1}{is a fitted model.}
+
+\item{m2}{is another fitted model.}
 }
 \value{
-A number, two times the value of x.
+Shows a message on the screen, indicating which model has the lower AIC.
 }
 \description{
-This function computes and compates de AIC value between two models.
+This function computes and compares the AIC value between two models.
 }
 \examples{
-bestAIC(model1, model2)
+model.wt <- lm(mpg~wt, data=mtcars)
+model.wt.hp <- lm(mpg~wt+hp, data=mtcars)
+bestAIC(model.wt, model.wt.hp)
 
 }
 \author{

@@ -1,17 +1,22 @@
-#' Multiply by Two
+#' Compare AIC
 #'
-#' This function computes and compates de AIC value between two models.
+#' This function computes and compares the AIC value between two models.
 #'
-#' @param  lm1 and lm2 are models.
+#' @param m1 is a fitted model.
+#' @param m2 is another fitted model.
 #'
 #' @return
-#' A number, two times the value of x.
+#' Shows a message on the screen, indicating which model has the lower AIC.
 #'
 #' @author
 #' Laura Aixalà Perelló
 #'
 #' @examples
-#' bestAIC(model1, model2)
+#' model.wt <- lm(mpg~wt, data=mtcars)
+#' model.wt.hp <- lm(mpg~wt+hp, data=mtcars)
+#' bestAIC(model.wt, model.wt.hp)
+#'
+#' @importFrom stats AIC
 #'
 #' @export
 
