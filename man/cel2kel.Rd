@@ -9,6 +9,9 @@ cel2kel(x)
 \arguments{
 \item{x}{Temperature in Celsius degrees.}
 }
+\value{
+Kelvin scale value, 273.15 added to Celsius degrees.
+}
 \description{
 Converts temperatures from Celsius degrees to Kelvin scale.
 }

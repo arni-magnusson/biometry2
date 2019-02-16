@@ -4,7 +4,7 @@
 #'
 #' @param x Temperature in Celsius degrees.
 #' 
-#' @returns
+#' @return
 #' Kelvin scale value, 273.15 added to Celsius degrees.
 #' 
 #' @author
