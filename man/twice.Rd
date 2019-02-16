@@ -22,7 +22,7 @@ twice(pi)
 
 }
 \seealso{
-\link{Arithmetic}
+\link{Arithmetic}, \code{\link{half}}.
 }
 \author{
 Arni Magnusson

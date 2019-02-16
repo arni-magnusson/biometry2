@@ -11,6 +11,9 @@
 #' @author
 #' Laura Aixalà Perelló
 #'
+#' @seealso
+#' \code{\link{AIC}}
+#'
 #' @examples
 #' model.wt <- lm(mpg~wt, data=mtcars)
 #' model.wt.hp <- lm(mpg~wt+hp, data=mtcars)

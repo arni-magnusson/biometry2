@@ -22,7 +22,7 @@ histeria(mtcars$qsec)
 
 }
 \seealso{
-\link{hist}
+\code{\link{hist}}
 }
 \author{
 Einar Petur Jonsson

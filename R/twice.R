@@ -11,7 +11,7 @@
 #' Arni Magnusson
 #'
 #' @seealso
-#' \link{Arithmetic}
+#' \link{Arithmetic}, \code{\link{half}}.
 #'
 #' @examples
 #' twice(10)

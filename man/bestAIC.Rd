@@ -23,6 +23,9 @@ model.wt.hp <- lm(mpg~wt+hp, data=mtcars)
 bestAIC(model.wt, model.wt.hp)
 
 }
+\seealso{
+\code{\link{AIC}}
+}
 \author{
 Laura Aixalà Perelló
 }

@@ -11,7 +11,7 @@
 #' Einar Petur Jonsson
 #'
 #' @seealso
-#' \link{hist}
+#' \code{\link{hist}}
 #'
 #' @examples
 #' histeria(mtcars$mpg)
