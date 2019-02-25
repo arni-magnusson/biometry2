@@ -13,19 +13,19 @@
 #'
 #' @note 
 #' Calculation of estimated parameters:
-#' R0 = Σ(lx x bx)
-#' Gc = Σ(lx x bx x age) / R0
-#' r(1) =  ln(R0) / Gc
-#' r(2) = ((dN/dt) x K) / (N x (K - N))
-#' ex = Tx / lx
+#' \eqn{R0 = \sum(lx x bx)}{R0 = Σ(lx x bx)}
+#' \eqn{Gc = \sum(lx x bx x age) / R0}{Gc = Σ(lx x bx x age) / R0}
+#' \eqn{r(1) =  ln(R0) / Gc}
+#' \eqn{r(2) = ((dN/dt) x K) / (N x (K - N))}
+#' \eqn{ex = Tx / lx}
 #' 
 #' Where R0 is the basic reproduction rate, lx proportion of living individuals at age x compared to age 0, bx numbers of offspring produced by individual at age x, Gc the average generation length, age the age in a given time unit, r the instantaneous multiplication rate, defined without or with K, Tx is a sum of proportion of individuals surviving at the mindpoint of present life stage (here age 0) and future life stages and ex is the execpted life length at age 0.
 #' 
 #' Some other needed values:
-#' lx = Ni/N0
-#' bx = Noi/Ni
-#' Lx = (lxi + lxi+1)/2
-#' Tx = Σ Lx
+#' \eqn{lx = Ni/N0}
+#' \eqn{bx = Noi/Ni}
+#' \eqn{Lx = (lxi + lxi+1)/2}
+#' \eqn{Tx = \sum Lx}{Tx = Σ Lx}
 #' 
 #' Ni is the number of individuals at a particular live stage, Noi is the offspring produced at a particular live stage and Lx is the proportion of individual survivial for midpoints of all livestages. 
 #'
