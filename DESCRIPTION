@@ -9,7 +9,8 @@ Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="arnima@hi.i
              person("Laura Aixalà", "Perelló", role="aut"),
              person("Ragnhildur", "Gudmundsdottir", role="aut"),
              person("Sebastien", "Matlosz", role="aut"),
-             person("Vigdís Freyja", "Helmutsdóttir", role="aut"))
+             person("Vigdís Freyja", "Helmutsdóttir", role="aut"),
+             person("Ölvir", "Styrmisson", role="aut"))
 Imports: graphics, stats
 Description: Collection of functions from Biometry II, University of Iceland.
 License: GPL (>= 2)
