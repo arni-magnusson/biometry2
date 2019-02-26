@@ -8,7 +8,7 @@
 #' A number, x squared.
 #' 
 #' @seealso
-#' \link{Aritmetric}, \code{\link{sqrt}}.
+#' \link{Arithmetic}, \code{\link{sqrt}}.
 #' 
 #' @examples 
 #' squared(10)

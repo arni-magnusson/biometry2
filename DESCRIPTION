@@ -1,11 +1,12 @@
 Package: biometry2
 Version: 1.2-0
-Date: 2019-02-25
+Date: 2019-02-26
 Title: Functions from Biometry II
 Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="arnima@hi.is"),
              person("Clara", "Jégousse", role="aut"),
              person("Einar Petur", "Jonsson", role="aut"),
              person("Elisabeth", "Knudsen", role="aut"),
+             person("Hulda Margrét" ,"Birkisdóttir", role="aut"),
              person("Laura Aixalà", "Perelló", role="aut"),
              person("Ragnhildur", "Gudmundsdottir", role="aut"),
              person("Sebastien", "Matlosz", role="aut"),
