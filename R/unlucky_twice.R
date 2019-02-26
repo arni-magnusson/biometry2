@@ -1,19 +1,19 @@
 #' Unlucky Twice
 #' 
-#' The unlucky_twice function enables you to multiply by two but in 50% of the cases the output will be "you are unlucky"
+#' The \code{unlucky_twice} function enables you to multiply by two but in 50\% of the cases the output will be \code{"you are unlucky"}.
 #' 
 #' @usage unlucky_twice(x)
 #' 
 #' @param x is a number
 #' 
-#' @details This function will only work for numerical arguments. This package neither brings luck nor alters it in any way. Either you are lucky or you aren't!
+#' @details This function will only work for numerical arguments. It neither brings luck nor alters it in any way. Either you are lucky or you aren't!
 #' 
-#' @return x multiplied by 2 (if you're lucky!)
+#' @return \code{x} multiplied by 2 (if you're lucky!)
 #' 
 #' @author Jóhannes Bjarki Urbancic Tómasson
 #' 
-#' @seealso /link{Arithmetic}
-#' /link {ifelse}
+#' @seealso \link{Arithmetic},
+#' \code{\link{if}}
 #' 
 #' @examples unlucky_twice(4)
 #' unlucky_twice(-3)
