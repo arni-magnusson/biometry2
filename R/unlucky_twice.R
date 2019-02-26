@@ -10,7 +10,7 @@
 #' 
 #' @return x multiplied by 2 (if you're lucky!)
 #' 
-#' @author Jóhannes Bjarki Urbancic Tómasson
+#' @author JÃ³hannes Bjarki Urbancic TÃ³masson
 #' 
 #' @seealso /link{Arithmetic}
 #' /link {ifelse}
