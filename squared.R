@@ -1,4 +1,4 @@
-#' square
+#' Squared
 #' 
 #' This function makes x squared.
 #' 
