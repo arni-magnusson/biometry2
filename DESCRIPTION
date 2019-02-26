@@ -7,6 +7,7 @@ Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="arnima@hi.i
              person("Einar Petur", "Jonsson", role="aut"),
              person("Elisabeth", "Knudsen", role="aut"),
              person("Hulda Margrét" ,"Birkisdóttir", role="aut"),
+             person("Jóhannes Bjarki Urbancic", "Tómasson", role="aut"),
              person("Laura Aixalà", "Perelló", role="aut"),
              person("Ragnhildur", "Gudmundsdottir", role="aut"),
              person("Sebastien", "Matlosz", role="aut"),

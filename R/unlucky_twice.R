@@ -20,7 +20,7 @@
 #' unlucky_twice((14+9*8)+3)
 #' unlucky_twice(pi)
 #' 
-#' @importFrom Stats rnorm
+#' @importFrom stats rnorm
 #' 
 #' @export
 

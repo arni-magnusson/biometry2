@@ -1,7 +1,8 @@
 --------------------------------------------------------------------------------
 biometry2 1.2-0 (2019-02-26)
 --------------------------------------------------------------------------------
-o Added functions lm_plot(), poppar(), squared(), and subtract().
+o Added functions lm_plot(), poppar(), squared(), subtract(), and
+  unlucky_twice().
 
 
 
