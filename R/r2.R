@@ -3,7 +3,8 @@
 #'This function calculates R2 from a linear regression
 #'
 #' @param x a number.
-#'
+#' @param y a numeric vector.
+#' 
 #' @return
 #' A number
 #'
@@ -15,8 +16,9 @@
 #'
 #' @examples
 #' r2(10,5)
-#'
 #' 
+#' @importFrom stats lm
+#'
 #'
 #' @export
 

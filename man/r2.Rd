@@ -8,6 +8,8 @@ r2(x, y)
 }
 \arguments{
 \item{x}{a number.}
+
+\item{y}{a numeric vector.}
 }
 \value{
 A number
@@ -17,8 +19,6 @@ This function calculates R2 from a linear regression
 }
 \examples{
 r2(10,5)
-
-
 
 }
 \seealso{
