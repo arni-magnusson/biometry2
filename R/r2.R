@@ -1,24 +1,28 @@
 #' Calculate R2 
 #'
-#'This function calculates R2 from a linear regression
+#' This function calculates R2, the coefficient of determination, from a linear
+#' regression.
 #'
-#' @param x a number.
+#' @param x a numeric vector.
 #' @param y a numeric vector.
 #' 
 #' @return
-#' A number
+#' R2 as a number.
 #'
 #' @author
 #' Hafrún Gunnarsdóttir
 #'
 #' @seealso
-#' \link{Arithmetic}
+#' \code{\link{lm}}
 #'
 #' @examples
-#' r2(10,5)
+#' r2(cars$speed, cars$dist)
 #' 
-#' @importFrom stats lm
+#' cor(cars$speed, cars$dist)^2
 #'
+#' summary(lm(dist~speed, data=cars))$r.squared
+#'
+#' @importFrom stats lm
 #'
 #' @export
 

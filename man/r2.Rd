@@ -7,22 +7,27 @@
 r2(x, y)
 }
 \arguments{
-\item{x}{a number.}
+\item{x}{a numeric vector.}
 
 \item{y}{a numeric vector.}
 }
 \value{
-A number
+R2 as a number.
 }
 \description{
-This function calculates R2 from a linear regression
+This function calculates R2, the coefficient of determination, from a linear
+regression.
 }
 \examples{
-r2(10,5)
+r2(cars$speed, cars$dist)
+
+cor(cars$speed, cars$dist)^2
+
+summary(lm(dist~speed, data=cars))$r.squared
 
 }
 \seealso{
-\link{Arithmetic}
+\code{\link{lm}}
 }
 \author{
 Hafrún Gunnarsdóttir
