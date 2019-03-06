@@ -4,15 +4,15 @@ Date: 2019-03-03
 Title: Functions from Biometry II
 Authors@R: c(person("Arni", "Magnusson", role=c("aut","cre"), email="arnima@hi.is"),
              person("Clara", "Jégousse", role="aut"),
-             person("Einar Petur", "Jonsson", role="aut"),
+             person(c("Einar", "Petur"), "Jonsson", role="aut"),
              person("Elisabeth", "Knudsen", role="aut"),
              person("Hafrún", "Gunnarsdóttir", role="aut"),
-             person("Hulda Margrét" ,"Birkisdóttir", role="aut"),
-             person("Jóhannes Bjarki Urbancic", "Tómasson", role="aut"),
-             person("Laura Aixalà", "Perelló", role="aut"),
+             person(c("Hulda", "Margrét") ,"Birkisdóttir", role="aut"),
+             person(c("Jóhannes", "Bjarki", "Urbancic"), "Tómasson", role="aut"),
+             person(c("Laura", "Aixalà"), "Perelló", role="aut"),
              person("Ragnhildur", "Gudmundsdottir", role="aut"),
              person("Sebastien", "Matlosz", role="aut"),
-             person("Vigdís Freyja", "Helmutsdóttir", role="aut"),
+             person(c("Vigdís", "Freyja"), "Helmutsdóttir", role="aut"),
              person("Ölvir", "Styrmisson", role="aut"))
 Imports: graphics, stats
 Description: Collection of functions from Biometry II, University of Iceland.
